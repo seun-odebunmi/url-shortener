@@ -1,27 +1,29 @@
 import { createShortUrlAndInsert } from '../helpers';
+import { ENDPOINT } from '../constants';
 
 const urlApi = (app, models) => {
   app.get('/url/:code', (request, response, next) => {
-    const shortUrl = request.params.code;
+    const { code } = request.params;
 
-    models.Url.getLongUrl(shortUrl)
+    models.Url.getLongUrl(code)
       .then(result => {
         if (result !== null) {
-          const { longUrl } = result;
-          response.json({ data: { url: longUrl } });
+          response.redirect(result.longUrl);
         } else {
-          response.json({ data: 'Not Found!' });
+          response.redirect(ENDPOINT);
         }
       })
       .catch(next);
   });
 
   app.post('/shorten', (request, response, next) => {
-    const longUrl = request.body.url;
+    const { url } = request.body;
 
-    createShortUrlAndInsert(longUrl)
+    createShortUrlAndInsert(url)
       .then(result => {
-        response.json({ data: result });
+        response.json({
+          data: { longUrl: result.longUrl, shortUrl: `${ENDPOINT}/url/${result.code}` }
+        });
       })
       .catch(next);
   });

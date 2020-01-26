@@ -8,6 +8,6 @@ export class HomeService {
   constructor(private apiCall: ApiCallService) {}
 
   public shortenUrl: IShortenUrl = body => {
-    return this.apiCall.post("shorten", body).map(res => res);
+    return this.apiCall.post("shorten", body).map(res => res.data);
   };
 }

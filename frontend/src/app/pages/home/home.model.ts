@@ -1,7 +1,8 @@
 import { Observable } from "rxjs/Observable";
 
 interface IShortenUrlReturn {
-  data: { longUrl: string; code: string };
+  longUrl: string;
+  shortUrl: string;
 }
 
 interface IShortenUrlBody {
