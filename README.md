@@ -1,12 +1,12 @@
 # url-shortener
-An application that converts a long url to a shortend url.
+An application that converts a long url to a shortened url.
 
-Tech Stack:
+# Tech Stack:
 
-Front-end
+## Front-end
 - Angular
 
-Back-end
+## Back-end
 - Node.js using Express as server
 - mySQL as database
 - Sequelize as ORM
