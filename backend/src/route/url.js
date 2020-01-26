@@ -1,7 +1,7 @@
 import { createShortUrlAndInsert } from '../helpers';
 import { ENDPOINT } from '../constants';
 
-const urlApi = (app, models) => {
+const urlRoute = (app, models) => {
   app.get('/url/:code', (request, response, next) => {
     const { code } = request.params;
 
@@ -29,4 +29,4 @@ const urlApi = (app, models) => {
   });
 };
 
-export default urlApi;
+export default urlRoute;

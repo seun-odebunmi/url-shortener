@@ -117,7 +117,7 @@ export class ApiCallService {
   }
 
   public extractData(res: any, method: string) {
-    console.log("res", res);
+    // console.log("res", res);
 
     if (res.status < 200 || res.status >= 300) {
       throw new Error("This request has failed " + res.status);

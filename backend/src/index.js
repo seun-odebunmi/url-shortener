@@ -5,7 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { createServer } from 'http';
 
-import apis from './api';
+import routes from './route';
 import { sequelize, models } from './models';
 import { SERVER_CONFIG, ENDPOINT } from './constants';
 
@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors(), helmet());
 
-apis(app, models);
+routes(app, models);
 
 const server = createServer(app);
 
