@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100 login-container">
+  <div class="col-xl-6 col-md-6 col-10">
+    <div class="card border-0 box-shadow rounded-0">
+      <div class="card-header d-flex justify-content-center align-items-center border-0 pa4">
+        <h1>URL Shortener</h1>
+      </div>
+      <div class="card-block text-center ph4 pt0 pb4">
+        <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left mt3">
+          <div class="form-group">
+            <label for="url">Type in URL:</label>
+            <input [formControl]="url" autocomplete="off" class="form-control form-control-lg validation-field br0"
+              placeholder="http://" type="url" />
+            <small class="text-danger" *ngIf="
+                form.get('url').touched &&
+                form.get('url').hasError('required')
+              ">URL is required!</small>
+          </div>
+          <div class="form-group">
+            <button [disabled]="!form.valid || (loaderService.isLoading | async)" class="btn btn-block pa3 br0"
+              type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
