@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   shortUrl: any;
   displayUrl = false;
+  urls = [];
 
   constructor(
     private homeService: HomeService,
@@ -45,11 +46,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.homeService.shortenUrl(values).subscribe(response => {
         this.displayUrl = true;
         this.shortUrl = response.shortUrl;
+        this.loadUrls();
       });
     }
   }
 
-  ngOnInit() {}
+  loadUrls = () => {
+    this.homeService.getUrls().subscribe(response => {
+      this.urls = response.data;
+    });
+  };
+
+  ngOnInit() {
+    this.loadUrls();
+  }
 
   ngAfterViewInit() {
     document.getElementById("preloader").classList.add("hide");

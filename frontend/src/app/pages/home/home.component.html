@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center align-items-center w-100 h-100 login-container">
-  <div class="col-xl-5 col-md-6 col-10">
+<div class="d-flex justify-content-around flex-column align-items-center w-100 h-100 login-container">
+  <div class="w-50">
     <div class="card border-0 box-shadow rounded-0">
       <div class="card-header d-flex justify-content-center align-items-center border-0 pa4">
         <h1>URL Shortener</h1>
@@ -28,6 +28,23 @@
           <p><a href={{shortUrl}} target="_blank">{{shortUrl}}</a></p>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="w-50">
+    <div class="overflow-auto" *ngIf="urls.length > 0">
+      <h3>{{urls.length}} Previously Shortened URLS</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Short URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let url of urls">
+            <td><a href={{url.shortUrl}} target="_blank">{{url.shortUrl}}</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

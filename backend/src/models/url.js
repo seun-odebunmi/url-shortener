@@ -26,6 +26,8 @@ const url = (sequelize, DataTypes) => {
 
   Url.getLongUrl = async code => Url.findOne({ where: { code } });
 
+  Url.getUrls = async () => Url.findAll();
+
   return Url;
 };
 

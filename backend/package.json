@@ -6,7 +6,7 @@
   "main": "public/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --watch",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "server": "node public",
     "build": "cross-env NODE_ENV=production webpack",
     "migrate": "npx sequelize-cli db:migrate",
@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
+    "express-validator": "^6.3.1",
     "graphql": "^14.3.0",
     "graphql-resolvers": "^0.3.3",
     "helmet": "^3.12.0",
