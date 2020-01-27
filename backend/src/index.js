@@ -1,23 +1,9 @@
 import 'dotenv/config';
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import helmet from 'helmet';
-import { createServer } from 'http';
+import server from './server';
+import { models } from './models';
+import { SERVER_CONFIG, ENDPOINT } from './config/config';
 
-import routes from './route';
-import { sequelize, models } from './models';
-import { SERVER_CONFIG, ENDPOINT } from './constants';
-
-const app = express();
-app.use(bodyParser.json());
-app.use(cors(), helmet());
-
-routes(app, models);
-
-const server = createServer(app);
-
-sequelize
+models.sequelize
   .sync()
   .then(async () => {
     server.listen({ port: SERVER_CONFIG.port }, () => {

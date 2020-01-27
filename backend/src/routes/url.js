@@ -1,8 +1,8 @@
 import { createShortUrlAndInsert } from '../helpers';
-import { ENDPOINT } from '../constants';
+import { ENDPOINT } from '../config/config';
 
-const urlRoute = (app, models) => {
-  app.get('/url/:code', (request, response, next) => {
+const urlRoute = (router, models) => {
+  router.get('/url/:code', (request, response, next) => {
     const { code } = request.params;
 
     models.Url.getLongUrl(code)
@@ -16,7 +16,7 @@ const urlRoute = (app, models) => {
       .catch(next);
   });
 
-  app.post('/shorten', (request, response, next) => {
+  router.post('/shorten', (request, response, next) => {
     const { url } = request.body;
 
     createShortUrlAndInsert(url)
